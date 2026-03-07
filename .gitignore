@@ -1,0 +1,16 @@
+# Cadence logs and locks
+*.log
+*.cdslock
+*.swp
+CDS.log
+.simrc
+
+# PDK model files (licensed)
+*.scs
+*.mod
+*.lib
+
+# Simulation raw output
+*.raw
+*.adhlSimDB
+
