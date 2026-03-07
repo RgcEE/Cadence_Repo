@@ -14,3 +14,27 @@ CDS.log
 *.raw
 *.adhlSimDB
 
+
+# AMS PDK auto-generated config (machine-specific)
+.cdsinit
+.cdsinit_local
+.simrc
+.assuraUI.prf
+.xstreamOut
+.synopsys_dc.setup
+.cadence/
+assura_tech.lib
+amsSetup.tcl
+c35_None.conf
+corners.io
+enc.tcl
+gds2.map
+calview.cellmap
+
+# Encounter directories (auto-generated)
+VERILOG/
+LEF/
+SDF/
+DB/
+DEF/
+CONSTRAINTS/
