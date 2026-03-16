@@ -1,24 +1,29 @@
-# Cadence logs and locks
+# ─── Cadence logs and locks ───────────────────────────────────────────────────
 *.log
 *.cdslock
 *.swp
 CDS.log
 .simrc
+.versioninfo
+libManager.log*
 
-# PDK model files (licensed)
-*.scs
+# ─── PDK and model files (licensed, not for public repo) ──────────────────────
+/tools.new/
+ams_models.scs
 *.mod
 *.lib
+*.scs
 
-# Simulation raw output
+# ─── Simulation output (auto-generated, large, machine-specific) ──────────────
+simulation/
+psf/
+*.psf
 *.raw
 *.adhlSimDB
 
-
-# AMS PDK auto-generated config (machine-specific)
+# ─── Cadence machine-specific config ──────────────────────────────────────────
 .cdsinit
 .cdsinit_local
-.simrc
 .assuraUI.prf
 .xstreamOut
 .synopsys_dc.setup
@@ -30,8 +35,12 @@ corners.io
 enc.tcl
 gds2.map
 calview.cellmap
+cds.lib
 
-# Encounter directories (auto-generated)
+# ─── Cadence library database (binary, not human-readable) ────────────────────
+sense_amp_lib/
+
+# ─── Encounter/Innovus auto-generated directories ─────────────────────────────
 VERILOG/
 LEF/
 SDF/
