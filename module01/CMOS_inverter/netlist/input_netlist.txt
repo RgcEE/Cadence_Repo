@@ -1,0 +1,34 @@
+// Generated for: spectre
+// Generated on: Mar 16 16:39:50 2026
+// Design library name: sense_amp_lib
+// Design cell name: CMOS_inv
+// Design view name: schematic
+simulator lang=spectre
+global 0
+parameters Vin=1 VDD=3.3
+include "/tools.new/examples/pdk/ams035/spectre/c35/cmos53.scs" section=cmostm
+include "/tools.new/examples/pdk/ams035/spectre/c35/processOption/C35B4C0.scs"
+include "/tools.new/examples/pdk/ams035/spectre/c35/process.scs"
+
+// Library name: sense_amp_lib
+// Cell name: CMOS_inv
+// View name: schematic
+M0 (Vout Vin 0 0) modn w=1.2u l=350n
+M1 (Vout Vin net8 net8) modp w=2.4u l=350n
+V1 (Vin 0) vsource dc=Vin mag=1 type=dc
+V0 (net8 0) vsource dc=VDD mag=1 type=dc
+simulatorOptions options psfversion="1.1.0" reltol=1e-3 vabstol=1e-6 \
+    iabstol=1e-12 temp=27 tnom=27 scalem=1.0 scale=1.0 gmin=1e-12 rforce=1 \
+    maxnotes=5 maxwarns=5 digits=5 cols=80 pivrel=1e-3 \
+    sensfile="../psf/sens.output" checklimitdest=psf 
+dcOp dc write="spectre.dc" maxiters=150 maxsteps=10000 annotate=status
+dcOpInfo info what=oppoint where=rawfile
+dc dc param=Vin start=0 stop=3.3 oppoint=rawfile maxiters=150 \
+    maxsteps=10000 annotate=status
+modelParameter info what=models where=rawfile
+element info what=inst where=rawfile
+outputParameter info what=output where=rawfile
+designParamVals info what=parameters where=rawfile
+primitives info what=primitives where=rawfile
+subckts info what=subckts where=rawfile
+saveOptions options save=allpub
