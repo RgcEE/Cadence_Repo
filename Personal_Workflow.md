@@ -28,7 +28,7 @@ git push
 - `sense_amp: add sa_core schematic`
 - `testbench: add transient sweep for SAE pulse`
 - `results: add decision delay vs input differential plot`
-- `docs: update lab notes for BSIM4 sweep`
+- `docs: update lab notes for BSIM3 sweep`
 
 ---
 
