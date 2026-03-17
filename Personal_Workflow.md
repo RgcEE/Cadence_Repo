@@ -24,11 +24,17 @@ git commit -m "brief description of what was done"
 git push
 ```
 
-### Good commit message examples
-- `sense_amp: add sa_core schematic`
-- `testbench: add transient sweep for SAE pulse`
-- `results: add decision delay vs input differential plot`
-- `docs: update lab notes for BSIM3 sweep`
+### Commit Types
+
+| Type | Use for | Example |
+|------|---------|---------|
+| `feat` | new feature | `feat(module01): add CMOS inverter VTC simulation` |
+| `fix` | bug fix | `fix(module01): correct model library load order for SFE-2001` |
+| `refactor` | internal code revision | `refactor(module01): restructure netlist for readability` |
+| `style` | formatting / naming | `style(module01): rename output node to Vout` |
+| `docs` | documentation | `docs(module01): add noise margin analysis to inverter notes` |
+| `chore` | maintenance / tooling | `chore: update .gitignore to exclude .ahdlSimDB` |
+| `perf` | performance improvement | `perf(module01): tighten sweep step for better Vm resolution` |
 
 ---
 
@@ -38,23 +44,6 @@ git push
 cd "C:\path\to\Cadence Repo"
 git pull
 ```
-
----
-
-## What Is Safe to Commit
-
-| File Type | Safe to Push | Notes |
-|---|---|---|
-| Schematics (exported) | Yes | Your own work |
-| Netlists you wrote | Yes | Your own work |
-| OCEAN scripts | Yes | Your own work |
-| Simulation results / plots | Yes | Your own work |
-| Lab reports / docs | Yes | Your own work |
-| README, notes, markdown | Yes | Your own work |
-| PDK model files (`.scs`, `.mod`, `.lib`) | **NO** | AMS licensed |
-| Cadence install files | **NO** | Cadence licensed |
-| Files from `/usr/local/cadence/` | **NO** | Licensed software |
-| Files from `/tools/` | **NO** | Licensed software |
 
 ---
 
