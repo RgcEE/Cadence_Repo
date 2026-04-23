@@ -1,0 +1,40 @@
+// Generated for: spectre
+// Generated on: Apr 12 17:28:54 2026
+// Design library name: sense_amp_lib
+// Design cell name: self_biasing_current_source
+// Design view name: schematic
+simulator lang=spectre
+global 0
+parameters Vm2=1.5 Wn_M0=4u Wn_M1=2u Ln=800n Lp=800n Rs=2062 Vac=1 Vdd=3.3 \
+    Wp=4u
+include "/home/gome0081/Cadence_Repo/cadence/models/ptm_180nm_ss.scs"
+
+// Library name: sense_amp_lib
+// Cell name: self_biasing_current_source
+// View name: schematic
+M1 (net6 net7 net13 0) NMOS w=Wn_M1 l=Ln
+M0 (net7 net7 0 0) NMOS w=Wn_M0 l=Ln
+M4 (net017 net6 Vin Vin) PMOS w=Wp l=Lp
+M3 (net7 net6 Vin Vin) PMOS w=Wp l=Lp
+M2 (net6 net6 Vin Vin) PMOS w=Wp l=Lp
+Rs2 (net13 0) resistor r=Rs
+VDD (Vin 0) vsource dc=Vdd mag=Vac type=dc
+V1 (net017 0) vsource dc=Vm2 type=dc
+nodeset net6=2.7 net7=0.6 net13=0.3 
+ic net6=2.7 net7=0.6 net13=0.3 
+simulatorOptions options psfversion="1.1.0" reltol=1e-3 vabstol=1e-6 \
+    iabstol=1e-12 temp=27 tnom=27 scalem=1.0 scale=1.0 gmin=1e-12 rforce=1 \
+    maxnotes=5 maxwarns=5 digits=5 cols=80 pivrel=1e-3 \
+    sensfile="../psf/sens.output" checklimitdest=psf 
+dcOp dc write="spectre.dc" maxiters=150 maxsteps=10000 annotate=status
+dcOpInfo info what=oppoint where=rawfile
+dc dc param=temp start=-40 stop=140 oppoint=rawfile maxiters=150 \
+    maxsteps=10000 annotate=status
+modelParameter info what=models where=rawfile
+element info what=inst where=rawfile
+outputParameter info what=output where=rawfile
+designParamVals info what=parameters where=rawfile
+primitives info what=primitives where=rawfile
+subckts info what=subckts where=rawfile
+save M4:d 
+saveOptions options save=allpub
