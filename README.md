@@ -54,3 +54,54 @@ Vm is 139 mV below VDD/2 (1.65 V ideal), consistent with AMS C35 electron/hole m
 
 ---
 
+## Module — Current Source Design
+
+Four current source structures in PTM 180 nm CMOS, 3.3 V, BSIM3v3 Level 49. Target: IB = 2 µA at VDD = 3.3 V, T = 50°C, TT corner. PVT sweep across SS/TT/FF corners, −40°C to 140°C, VDD 2.7–3.3 V.
+
+[Full module documentation](module_current_source/README.md)
+
+### Circuit 1 — Simple current source
+
+![Simple current source schematic](module_current_source/simple_current_source/simple_current_source_schematic.png)
+
+- M1 diode-connected NMOS + RS1 = 1.35 MΩ sets Iref; M2 mirrors 1:1
+- W = 1 µm, L = 500 nm (both transistors)
+- TT: **IB1 = 2.013 µA** · FF: +3.4% · SS: −3.1%
+- Positive temperature coefficient across all corners; VDD spread 1.35 µA over 2.7–3.3 V
+
+### Circuit 2 — Self-biasing gm current source
+
+![Self-biasing gm schematic](module_current_source/self_biasing_current_source/self_biasing_current_source_schematic.png)
+
+- PMOS mirror forces equal current through source-degenerated M5 (RS2 = 6 kΩ) and M6
+- Operating point: Iref = 1 / (2 · gm5 · RS2) — supply-independent by design
+- TT: **IB2 = 2.045 µA** · FF: −2.8% · SS: −50.2% (fixed RS2)
+- Negative temperature coefficient; 5× RS2 spread required across SS/FF corners
+
+### Circuit 3 — Self-biasing gm with cascode stage
+
+![Cascode stage schematic](module_current_source/self_biasing_current_source_cascode_stage/self_biasing_current_source_cascode_stage_schematic.png)
+
+- Four independently sized regions; Rout ≈ 6.95 GΩ at L = 1 µm
+- TT: **IB3 = 2.019 µA** · FF: +0.15% · SS: +0.49%
+- 9× temperature stability improvement over Circuits 1–2; VDD spread reduced to 0.61 µA
+
+### Circuit 4 — Self-biasing gm with start-up circuit
+
+![Start-up circuit schematic](module_current_source/self_biasing_current_source_startup/self_biasing_current_source_startup_schematic.png)
+
+- Adds PMOS injection stack (M29–M36) to resolve zero-current degenerate state at power-on
+- PWL VDD ramp 0 → 3.3 V over 50 µs; transient verified across SS/TT/FF corners
+
+### Cross-design summary
+
+| Metric | Circuit 1 | Circuit 2 | Circuit 3 |
+|--------|-----------|-----------|-----------|
+| IB at TT, 3.3 V, 50°C | 2.013 µA | 2.045 µA | 2.019 µA |
+| Temp swing −40 to 140°C | 45% | 45% | 5% |
+| VDD spread 2.7–3.3 V | 1.35 µA | 1.35 µA | 0.61 µA |
+| SS deviation from TT | −3.1% | −50.2% | +0.49% |
+| FF deviation from TT | +3.4% | −2.8% | +0.15% |
+
+---
+
