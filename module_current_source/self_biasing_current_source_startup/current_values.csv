@@ -1,0 +1,13 @@
+Name,Type,Output,Plot,Save
+,terminal,/M6/D,t,t
+,terminal,/M0/D,t,t
+,terminal,/M1/D,t,t
+,terminal,/M2/D,t,t
+,terminal,/M9/S,t,t
+,terminal,/M10/S,t,t
+,terminal,/M8/D,,
+,terminal,/M7/D,,
+,terminal,/M3/D,,
+,terminal,/M12/S,t,t
+,terminal,/M13/S,t,t
+,terminal,/M4/D,t,t

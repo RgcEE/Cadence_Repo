@@ -1,0 +1,49 @@
+// Generated for: spectre
+// Generated on: Apr 12 19:59:18 2026
+// Design library name: sense_amp_lib
+// Design cell name: self_biasing_current_source_cascode_stage
+// Design view name: schematic
+simulator lang=spectre
+global 0
+parameters Wn_cascode=6u Wp_cascode_top=8u Wp_mirror=8u Rs=8.8k Wn_bot=4u \
+    Ln=1u Lp=1u Vdd=3.3 Vm1=1.5
+include "/home/gome0081/Cadence_Repo/cadence/models/ptm_180nm_ff.scs"
+
+// Library name: sense_amp_lib
+// Cell name: self_biasing_current_source_cascode_stage
+// View name: schematic
+M8 (net7 net6 net18 net26) PMOS w=Wp_mirror l=Lp
+M7 (net06 net6 net19 net26) PMOS w=Wp_mirror l=Lp
+M6 (net011 net6 net20 net26) PMOS w=Wp_mirror l=Lp
+M5 (net6 net6 net26 net26) PMOS w=Wp_mirror l=Lp
+M4 (net043 net6 net17 net26) PMOS w=Wp_mirror l=Lp
+M3 (net17 net7 net26 net26) PMOS w=Wp_cascode_top l=Lp
+M2 (net20 net7 net26 net26) PMOS w=Wp_cascode_top l=Lp
+M1 (net19 net7 net26 net26) PMOS w=Wp_cascode_top l=Lp
+M0 (net18 net7 net26 net26) PMOS w=Wp_cascode_top l=Lp
+V0 (net26 0) vsource dc=Vdd mag=1 type=dc
+M15 (net033 net06 0 0) NMOS w=Wn_bot l=Ln
+M14 (net037 net06 0 0) NMOS w=Wn_bot l=Ln
+M13 (net038 net06 net029 0) NMOS w=Wn_bot l=Ln
+M12 (net6 net011 net033 0) NMOS w=Wn_cascode l=Ln
+M11 (net011 net011 0 0) NMOS w=Wn_cascode l=Ln
+M10 (net06 net011 net037 0) NMOS w=Wn_cascode l=Ln
+M9 (net7 net011 net038 0) NMOS w=Wn_cascode l=Ln
+Rs (net029 0) resistor r=Rs
+V1 (net043 0) vsource dc=Vm1 type=dc
+simulatorOptions options psfversion="1.1.0" reltol=1e-3 vabstol=1e-6 \
+    iabstol=1e-12 temp=27 tnom=27 scalem=1.0 scale=1.0 gmin=1e-12 rforce=1 \
+    maxnotes=5 maxwarns=5 digits=5 cols=80 pivrel=1e-3 \
+    sensfile="../psf/sens.output" checklimitdest=psf 
+dcOp dc write="spectre.dc" maxiters=150 maxsteps=10000 annotate=status
+dcOpInfo info what=oppoint where=rawfile
+dc dc param=temp start=-40 stop=140 oppoint=rawfile maxiters=150 \
+    maxsteps=10000 annotate=status
+modelParameter info what=models where=rawfile
+element info what=inst where=rawfile
+outputParameter info what=output where=rawfile
+designParamVals info what=parameters where=rawfile
+primitives info what=primitives where=rawfile
+subckts info what=subckts where=rawfile
+save M4:d 
+saveOptions options save=allpub

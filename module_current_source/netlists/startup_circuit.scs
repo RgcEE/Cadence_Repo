@@ -1,0 +1,47 @@
+// Generated for: spectre
+// Generated on: Apr 12 23:07:04 2026
+// Design library name: sense_amp_lib
+// Design cell name: self_biasing_current_source_startup
+// Design view name: schematic
+simulator lang=spectre
+global 0
+parameters Ln_startup_M10=4u Lp_startup_M8=500n Wn_startup_M10=180n \
+    Wp_startup_M8=2u Ln_startup=1u Lp_startup=1u Wn_ref=4u Rs_L=16u \
+    Rs_W=2u Wn_startup=500n Wp_startup=500n Ln=1u Lp=1u R_S2=8.4k Vm1=1.5 \
+    Wn=8u Wp=6u
+include "/home/gome0081/Cadence_Repo/cadence/models/ptm_180nm.scs"
+
+// Library name: sense_amp_lib
+// Cell name: self_biasing_current_source_startup
+// View name: schematic
+M8 (net11 net11 net5 net5) PMOS w=Wp_startup_M8 l=Lp_startup_M8
+M7 (net15 net11 net5 net5) PMOS w=Wp_startup l=Lp_startup
+M6 (net029 net14 net5 net5) PMOS w=Wp l=Lp
+M5 (net15 net14 net5 net5) PMOS w=Wp l=Lp
+M4 (net14 net14 net5 net5) PMOS w=Wp l=Lp
+M3 (net11 net14 net5 net5) PMOS w=Wp_startup l=Lp_startup
+M2 (net4 0 net29 0) PMOS w=Wp_startup l=Lp_startup
+M1 (net29 0 net28 0) PMOS w=Wp_startup l=Lp_startup
+M0 (net28 0 net5 0) PMOS w=Wp_startup l=Lp_startup
+M13 (net15 net15 0 0) NMOS w=Wn_ref l=Ln
+M12 (net14 net15 net26 0) NMOS w=Wn l=Ln
+M9 (net4 net4 0 0) NMOS w=Wn_startup l=Ln_startup
+M10 (net11 net4 0 0) NMOS w=Wn_startup_M10 l=Ln_startup_M10
+R0 (net26 0) resistor r=R_S2 l=Rs_L w=Rs_W
+V_Source (net5 0) vsource type=pwl allbrkpts=yes wave=[ 0 0 50u 3.3 ]
+V1 (net029 0) vsource dc=Vm1 type=dc
+simulatorOptions options psfversion="1.1.0" reltol=1e-3 vabstol=1e-6 \
+    iabstol=1e-12 temp=27 tnom=27 scalem=1.0 scale=1.0 gmin=1e-12 rforce=1 \
+    maxnotes=5 maxwarns=5 digits=5 cols=80 pivrel=1e-3 \
+    sensfile="../psf/sens.output" checklimitdest=psf 
+tran tran stop=200u step=10n write="spectre.ic" writefinal="spectre.fc" \
+    annotate=status maxiters=5 
+finalTimeOP info what=oppoint where=rawfile
+modelParameter info what=models where=rawfile
+element info what=inst where=rawfile
+outputParameter info what=output where=rawfile
+designParamVals info what=parameters where=rawfile
+primitives info what=primitives where=rawfile
+subckts info what=subckts where=rawfile
+save M6:d M0:d M1:d M2:d M9:s M10:s M12:s M13:s M4:d 
+saveOptions options save=allpub
