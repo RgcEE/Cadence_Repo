@@ -12,7 +12,6 @@ libManager.log*
 ams_models.scs
 *.mod
 *.lib
-*.scs
 
 # ─── Simulation output (auto-generated, large, machine-specific) ──────────────
 simulation/
