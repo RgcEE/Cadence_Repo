@@ -1,0 +1,8 @@
+Name,Type,Output,Plot,Save
+,net,/Vdc,,t
+,terminal,/M2/D,t,t
+,terminal,/M1/D,,t
+,terminal,/M2/G,,t
+,terminal,/M1/G,,t
+,net,/net8,,t
+,net,/Vm2,,t
